@@ -32,7 +32,7 @@
 
 #if REDCONF_TASK_COUNT > 1U
 
-static ms_handle_t ms_edgefs_core_lockid;
+static ms_handle_t ms_edgefs_lockid;
 
 /** @brief Initialize the mutex.
 
@@ -49,7 +49,7 @@ REDSTATUS RedOsMutexInit(void)
 {
     REDSTATUS ret = 0;
     
-    if (ms_mutex_create("edgefs_lock", MS_WAIT_TYPE_PRIO, &ms_edgefs_core_lockid) != MS_ERR_NONE) {
+    if (ms_mutex_create("edgefs_lock", MS_WAIT_TYPE_PRIO, &ms_edgefs_lockid) != MS_ERR_NONE) {
         ms_printk(MS_PK_ERR, "Failed to create edgefs lock!\n");
         ret = -RED_ENOMEM;
     }
@@ -70,9 +70,9 @@ REDSTATUS RedOsMutexInit(void)
 */
 REDSTATUS RedOsMutexUninit(void)
 {
-    ms_mutex_destroy(ms_edgefs_core_lockid);
+    ms_mutex_destroy(ms_edgefs_lockid);
     
-    ms_edgefs_core_lockid = MS_HANDLE_INVALID;
+    ms_edgefs_lockid = MS_HANDLE_INVALID;
 
     return 0;
 }
@@ -86,7 +86,7 @@ REDSTATUS RedOsMutexUninit(void)
 */
 void RedOsMutexAcquire(void)
 {
-    while (ms_mutex_lock(ms_edgefs_core_lockid, MS_TIMEOUT_FOREVER) != MS_ERR_NONE) {
+    while (ms_mutex_lock(ms_edgefs_lockid, MS_TIMEOUT_FOREVER) != MS_ERR_NONE) {
     }
 }
 
@@ -102,7 +102,7 @@ void RedOsMutexAcquire(void)
 */
 void RedOsMutexRelease(void)
 {
-    ms_mutex_unlock(ms_edgefs_core_lockid);
+    ms_mutex_unlock(ms_edgefs_lockid);
 }
 
 #endif
