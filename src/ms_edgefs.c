@@ -39,123 +39,99 @@ int ms_edgefs_err_to_errno(int err)
         err = 0;
         break;
 
-        /** Operation not permitted. */
-    case RED_EPERM:
+    case RED_EPERM:         /** Operation not permitted. */
         err = EPERM;
         break;
 
-        /** No such file or directory. */
-    case RED_ENOENT:
+    case RED_ENOENT:        /** No such file or directory. */
         err = ENOENT;
         break;
 
-        /** I/O error. */
-    case RED_EIO:
+    case RED_EIO:           /** I/O error. */
         err = EIO;
         break;
 
-        /** Bad file number. */
-    case RED_EBADF:
+    case RED_EBADF:         /** Bad file number. */
         err = EBADF;
         break;
 
-        /** Out of memory */
-    case RED_ENOMEM:
+    case RED_ENOMEM:        /** Out of memory */
         err = ENOMEM;
         break;
 
-        /** Device or resource busy. */
-    case RED_EBUSY:
+    case RED_EBUSY:         /** Device or resource busy. */
         err = EBUSY;
         break;
 
-        /** File exists. */
-    case RED_EEXIST:
+    case RED_EEXIST:        /** File exists. */
         err = EEXIST;
         break;
 
-        /** Cross-device link. */
-    case RED_EXDEV:
+    case RED_EXDEV:         /** Cross-device link. */
         err = EXDEV;
         break;
 
-        /** Not a directory. */
-    case RED_ENOTDIR:
+    case RED_ENOTDIR:       /** Not a directory. */
         err = ENOTDIR;
         break;
 
-        /** Is a directory. */
-    case RED_EISDIR:
+    case RED_EISDIR:        /** Is a directory. */
         err = EISDIR;
         break;
 
-        /** Invalid argument. */
-    case RED_EINVAL:
+    case RED_EINVAL:        /** Invalid argument. */
         err = EINVAL;
         break;
 
-        /** File table overflow. */
-    case RED_ENFILE:
+    case RED_ENFILE:        /** File table overflow. */
         err = ENFILE;
         break;
 
-        /** Too many open files. */
-    case RED_EMFILE:
+    case RED_EMFILE:        /** Too many open files. */
         err = EMFILE;
         break;
 
-        /** File too large. */
-    case RED_EFBIG:
+    case RED_EFBIG:         /** File too large. */
         err = EFBIG;
         break;
 
-        /** No space left on device. */
-    case RED_ENOSPC:
+    case RED_ENOSPC:        /** No space left on device. */
         err = ENOSPC;
         break;
 
-        /** Read-only file system. */
-    case RED_EROFS:
+    case RED_EROFS:         /** Read-only file system. */
         err = EROFS;
         break;
 
-        /** Too many links. */
-    case RED_EMLINK:
+    case RED_EMLINK:        /** Too many links. */
         err = EMLINK;
         break;
 
-        /** Math result not representable. */
-    case RED_ERANGE:
+    case RED_ERANGE:        /** Math result not representable. */
         err = ERANGE;
         break;
 
-        /** File name too long. */
-    case RED_ENAMETOOLONG:
+    case RED_ENAMETOOLONG:  /** File name too long. */
         err = ENAMETOOLONG;
         break;
 
-        /** Function not implemented. */
-    case RED_ENOSYS:
+    case RED_ENOSYS:        /** Function not implemented. */
         err = ENOSYS;
         break;
 
-        /** Directory not empty. */
-    case RED_ENOTEMPTY:
+    case RED_ENOTEMPTY:     /** Directory not empty. */
         err = ENOTEMPTY;
         break;
 
-        /** No data available. */
-    case RED_ENODATA:
+    case RED_ENODATA:       /** No data available. */
         err = ENODATA;
         break;
 
-        /** Too many users. */
-    case RED_EUSERS:
+    case RED_EUSERS:        /** Too many users. */
         err = EUSERS;
         break;
 
-        /** Operation is not supported. */
-    case RED_ENOTSUPP:
+    case RED_ENOTSUPP:      /** Operation is not supported. */
         err = ENOTSUP;
         break;
 
@@ -270,7 +246,7 @@ static int __ms_edgefs_mount(ms_io_mnt_t *mnt, ms_io_device_t *dev, const char *
             gaRedVolConf[vol_num].ullSectorOffset    = mparam->sector_offset;
             gaRedVolConf[vol_num].fAtomicSectorWrite = mparam->atomic_sector_write;
             gaRedVolConf[vol_num].ulInodeCount       = mparam->inode_count;
-            gaRedVolConf[vol_num].bBlockIoRetries    = mparam->blk_io_retries;
+            gaRedVolConf[vol_num].bBlockIoRetries    = mparam->block_io_retries;
             gaRedVolConf[vol_num].pszPathPrefix      = mparam->path_prefix;
             gaRedVolConf[vol_num].dev                = dev;
 

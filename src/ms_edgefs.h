@@ -23,7 +23,7 @@ typedef struct {
     ms_uint64_t    sector_offset;
     ms_bool_t      atomic_sector_write;
     ms_uint32_t    inode_count;
-    ms_uint8_t     blk_io_retries;
+    ms_uint8_t     block_io_retries;
     const char    *path_prefix;
 } ms_edgefs_mount_param_t;
 
