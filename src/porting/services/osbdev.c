@@ -69,7 +69,7 @@ REDSTATUS RedOsBDevOpen(
     {
         ms_io_device_t *dev = (ms_io_device_t *)gaRedVolConf[bVolNum].dev;
 
-        if(dev->drv->ops->ioctl(dev->ctx, NULL, MS_IO_BLKDEV_CMD_INIT, NULL) < 0)
+        if(dev->drv->ops->ioctl(dev->ctx, NULL, MS_BLKDEV_CMD_INIT, NULL) < 0)
         {
             ret = -RED_EIO;
         }
@@ -164,23 +164,20 @@ REDSTATUS RedOsBDevGetGeometry(
         ms_io_device_t *dev = (ms_io_device_t *)gaRedVolConf[bVolNum].dev;
         ms_uint32_t sector_count;
 
-        if(dev->drv->ops->ioctl(dev->ctx, NULL, MS_IO_BLKDEV_CMD_SECT_NR, &sector_count) < 0)
+        if(dev->drv->ops->ioctl(dev->ctx, NULL, MS_BLKDEV_CMD_GET_SECT_NR, &sector_count) < 0)
         {
             ret = -RED_EIO;
         }
         else
         {
-            ms_uint16_t sector_size;
-
             pInfo->ullSectorCount = sector_count;
 
-            if(dev->drv->ops->ioctl(dev->ctx, NULL, MS_IO_BLKDEV_CMD_SECT_SZ, &sector_size) < 0)
+            if(dev->drv->ops->ioctl(dev->ctx, NULL, MS_BLKDEV_CMD_GET_SECT_SZ, &pInfo->ulSectorSize) < 0)
             {
                 ret = -RED_EIO;
             }
             else
             {
-                pInfo->ulSectorSize = sector_size;
                 ret = 0;
             }
         }
@@ -329,7 +326,7 @@ REDSTATUS RedOsBDevFlush(
     {
         ms_io_device_t *dev = (ms_io_device_t *)gaRedVolConf[bVolNum].dev;
 
-        if(dev->drv->ops->ioctl(dev->ctx, NULL, MS_IO_BLKDEV_CMD_SYNC, NULL) < 0)
+        if(dev->drv->ops->ioctl(dev->ctx, NULL, MS_BLKDEV_CMD_SYNC, NULL) < 0)
         {
             ret = -RED_EIO;
         }
