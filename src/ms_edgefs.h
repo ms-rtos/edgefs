@@ -6,7 +6,7 @@
  *
  * File: ms_edgefs.h reliance edge file system implement.
  *
- * Author: Jiao.jinxing <jiaojixing@acoinfo.com>
+ * Author: Jiao.jinxing <jiaojinxing@acoinfo.com>
  *
  */
 

@@ -6,7 +6,7 @@
  *
  * File: ms_edgefs_cfg.h reliance edge file system configure.
  *
- * Author: Jiao.jinxing <jiaojixing@acoinfo.com>
+ * Author: Jiao.jinxing <jiaojinxing@acoinfo.com>
  *
  */
 
