@@ -309,13 +309,13 @@ static int __ms_edgefs_mkfs(ms_io_mnt_t *mnt, ms_const_ptr_t param)
     return ret;
 }
 
-static int __ms_edgefs_unmount(ms_io_mnt_t *mnt, ms_const_ptr_t param, ms_bool_t force)
+static int __ms_edgefs_unmount(ms_io_mnt_t *mnt, ms_const_ptr_t param)
 {
     ms_edgefs_t *edgefs = mnt->ctx;
     int ret;
 
     ret = red_umount(edgefs->volume);
-    if (ret == 0) {
+    if ((ret == 0) || mnt->umount_req) {
         mnt->ctx = MS_NULL;
         (void)ms_kfree(edgefs);
     }
@@ -347,7 +347,7 @@ static int __ms_edgefs_close(ms_io_mnt_t *mnt, ms_io_file_t *file)
     int ret;
 
     ret = red_close((int)file->ctx);
-    if (ret == 0) {
+    if ((ret == 0) || mnt->umount_req) {
         file->ctx = MS_NULL;
     }
 
@@ -565,7 +565,7 @@ static int __ms_edgefs_closedir(ms_io_mnt_t *mnt, ms_io_file_t *file)
     int ret;
 
     ret = red_closedir(file->ctx);
-    if (ret == 0) {
+    if ((ret == 0) || mnt->umount_req) {
         file->ctx = MS_NULL;
     }
 
