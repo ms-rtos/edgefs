@@ -291,8 +291,6 @@ static int __ms_edgefs_mkfs(ms_io_mnt_t *mnt, ms_const_ptr_t param)
     ms_uint8_t vol_num = edgefs->vol_num;
     int ret;
 
-    RedOsMutexAcquire();
-
     ret = red_umount(edgefs->volume);
     if (ret == 0) {
         gaRedVolConf[vol_num].dev = dev;
@@ -303,8 +301,6 @@ static int __ms_edgefs_mkfs(ms_io_mnt_t *mnt, ms_const_ptr_t param)
     } else {
         gaRedVolConf[vol_num].dev = dev;
     }
-
-    RedOsMutexRelease();
 
     return ret;
 }
